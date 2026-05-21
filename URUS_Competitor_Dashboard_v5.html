@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>URUS Global Competitor Landscape - Executive Dashboard (Rev 5)</title>
+<style>
+  :root {
+    --bg: #f5f6f8;
+    --surface: #ffffff;
+    --ink: #1a1f2e;
+    --ink-soft: #4a5268;
+    --ink-muted: #7a8297;
+    --line: #e4e7ee;
+    --line-strong: #c8cdd8;
+    --accent: #1f4e78;
+    --accent-soft: #e8f0f8;
+    --critical: #b8263c;
+    --critical-bg: #fbe9ec;
+    --high: #d97706;
+    --high-bg: #fdf1e0;
+    --medium: #4c6b8a;
+    --medium-bg: #e6edf4;
+    --low: #6b7a8a;
+    --low-bg: #edf0f4;
+    --primary-mark: #b8263c;
+    --secondary-mark: #b08020;
+    --channel-mark: #1f4e78;
+    --radius: 6px;
+    --shadow-sm: 0 1px 2px rgba(26,31,46,0.04), 0 0 0 1px rgba(26,31,46,0.04);
+    --shadow-md: 0 4px 12px rgba(26,31,46,0.06), 0 0 0 1px rgba(26,31,46,0.04);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 17.7px; line-height: 1.55;
+    color: var(--ink); background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+  header.site {
+    background: linear-gradient(135deg, #1a2942 0%, #1f4e78 100%);
+    color: #fff;
+    padding: 28px 40px 24px;
+    box-shadow: var(--shadow-md);
+  }
+  header.site h1 {
+    margin: 0 0 4px; font-size: 26.8px; font-weight: 600; letter-spacing: -0.2px;
+  }
+  header.site .sub {
+    font-size: 15.9px; opacity: 0.82; font-weight: 400;
+  }
+  header.site .meta {
+    font-size: 14.6px; opacity: 0.7; margin-top: 10px;
+  }
+  nav.tabs {
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+    padding: 0 40px;
+    display: flex;
+    gap: 4px;
+    position: sticky; top: 0; z-index: 10;
+    box-shadow: 0 1px 0 var(--line);
+    flex-wrap: wrap;
+  }
+  nav.tabs button {
+    background: transparent; border: none;
+    padding: 14px 18px; font-size: 16.5px; font-weight: 500;
+    color: var(--ink-soft); cursor: pointer;
+    border-bottom: 2px solid transparent;
+    font-family: inherit;
+  }
+  nav.tabs button:hover { color: var(--ink); }
+  nav.tabs button.active {
+    color: var(--accent); border-bottom-color: var(--accent);
+  }
+  main {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 32px 40px 60px;
+  }
+  .view { display: none; }
+  .view.active { display: block; }
+  h2.section-h {
+    font-size: 18.9px; font-weight: 600; letter-spacing: 0.3px;
+    color: var(--ink); text-transform: uppercase;
+    margin: 40px 0 14px; padding-bottom: 6px;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  h2.section-h:first-child { margin-top: 0; }
+  h3.card-title {
+    font-size: 17.7px; font-weight: 600; margin: 0 0 6px; color: var(--ink);
+  }
+  p.lede {
+    font-size: 18.3px; color: var(--ink-soft);
+    max-width: 900px; margin: 0 0 20px;
+  }
+
+  .kpi-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+    margin-bottom: 28px;
+  }
+  .kpi {
+    background: var(--surface); border-radius: var(--radius);
+    padding: 16px 18px; box-shadow: var(--shadow-sm);
+  }
+  .kpi .num {
+    font-size: 31.7px; font-weight: 700; color: var(--ink);
+    letter-spacing: -0.5px;
+  }
+  .kpi .label {
+    font-size: 14.6px; color: var(--ink-muted);
+    text-transform: uppercase; letter-spacing: 0.4px; margin-top: 2px;
+  }
+  .threat-list {
+    display: grid; grid-template-columns: 1fr; gap: 12px;
+  }
+  .threat-card {
+    background: var(--surface); border-radius: var(--radius);
+    padding: 18px 20px; box-shadow: var(--shadow-sm);
+    border-left: 4px solid var(--line-strong);
+  }
+  .threat-card.critical { border-left-color: var(--critical); }
+  .threat-card.high { border-left-color: var(--high); }
+  .threat-card .hd {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; margin-bottom: 8px;
+  }
+  .threat-card h3 { margin: 0; font-size: 18.3px; font-weight: 600; }
+  .sev-chip {
+    font-size: 12.8px; font-weight: 700; letter-spacing: 0.4px;
+    padding: 3px 8px; border-radius: 3px; text-transform: uppercase;
+  }
+  .sev-chip.critical { background: var(--critical-bg); color: var(--critical); }
+  .sev-chip.high { background: var(--high-bg); color: var(--high); }
+  .sev-chip.medium { background: var(--medium-bg); color: var(--medium); }
+  .sev-chip.low { background: var(--low-bg); color: var(--low); }
+  .threat-card p { margin: 6px 0 8px; font-size: 16.5px; color: var(--ink-soft); }
+  .examples {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px;
+  }
+  .ex-chip {
+    font-size: 14px; padding: 3px 9px; border-radius: 3px;
+    background: #f0f2f6; color: var(--ink-soft);
+  }
+  .threat-card .exposure {
+    font-size: 14px; color: var(--ink-muted); margin-top: 8px;
+    padding-top: 8px; border-top: 1px dashed var(--line);
+  }
+
+  .heatmap-wrap { overflow-x: auto; }
+  table.heatmap {
+    width: 100%; border-collapse: collapse;
+    background: var(--surface); border-radius: var(--radius);
+    box-shadow: var(--shadow-sm); font-size: 14.6px;
+  }
+  table.heatmap th, table.heatmap td {
+    padding: 6px 8px; border: 1px solid var(--line);
+    text-align: center; vertical-align: middle;
+  }
+  table.heatmap thead th {
+    background: #f5f6f8; font-weight: 600; color: var(--ink);
+    font-size: 14px; letter-spacing: 0.2px;
+    position: sticky; top: 0;
+  }
+  table.heatmap tbody td:first-child,
+  table.heatmap tbody th:first-child {
+    text-align: left; padding-left: 12px; font-weight: 500;
+    background: #fafbfc; white-space: nowrap;
+  }
+  .mark { font-weight: 700; font-size: 15.2px; }
+  .mark.P { color: var(--primary-mark); }
+  .mark.S { color: var(--secondary-mark); }
+  .mark.C { color: var(--channel-mark); }
+  .legend {
+    display: flex; gap: 18px; font-size: 14.6px; color: var(--ink-soft);
+    margin-top: 10px;
+  }
+  .legend span b { font-weight: 700; margin-right: 4px; }
+
+  .top-threats {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+  }
+  .top-threat {
+    background: var(--surface); border-radius: var(--radius);
+    padding: 14px 16px; box-shadow: var(--shadow-sm);
+    cursor: pointer; transition: transform 0.12s, box-shadow 0.12s;
+    border-left: 3px solid var(--line);
+  }
+  .top-threat:hover {
+    transform: translateY(-1px); box-shadow: var(--shadow-md);
+  }
+  .top-threat.critical { border-left-color: var(--critical); }
+  .top-threat.high { border-left-color: var(--high); }
+  .top-threat .name {
+    font-weight: 600; font-size: 16.5px; color: var(--ink);
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  }
+  .top-threat .hq {
+    font-size: 14px; color: var(--ink-muted); margin-top: 2px;
+  }
+  .top-threat .reason {
+    font-size: 15.2px; color: var(--ink-soft); margin-top: 6px;
+    line-height: 1.45;
+  }
+
+  .recs {
+    display: grid; gap: 12px;
+  }
+  .rec {
+    background: var(--surface); border-radius: var(--radius);
+    padding: 16px 20px; box-shadow: var(--shadow-sm);
+    border-left: 3px solid var(--accent);
+  }
+  .rec.critical { border-left-color: var(--critical); }
+  .rec.high { border-left-color: var(--high); }
+  .rec h3 { margin: 0 0 6px; font-size: 17.1px; font-weight: 600; }
+  .rec ul { margin: 6px 0 0; padding-left: 22px; font-size: 15.9px; color: var(--ink-soft); }
+  .rec li { margin-bottom: 6px; line-height: 1.5; }
+
+  .brand-picker {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px;
+  }
+  .brand-picker button {
+    background: var(--surface); border: 1px solid var(--line);
+    padding: 8px 14px; font-size: 15.9px; font-weight: 500;
+    color: var(--ink-soft); cursor: pointer;
+    border-radius: 4px; font-family: inherit;
+  }
+  .brand-picker button:hover { border-color: var(--line-strong); color: var(--ink); }
+  .brand-picker button.active {
+    background: var(--accent); color: #fff; border-color: var(--accent);
+  }
+  .brand-hero {
+    background: var(--surface); border-radius: var(--radius);
+    padding: 22px 26px; margin-bottom: 22px; box-shadow: var(--shadow-sm);
+  }
+  .brand-hero h2 { margin: 0 0 4px; font-size: 24.4px; font-weight: 600; }
+  .brand-hero .focus { font-size: 16.5px; color: var(--ink-soft); }
+  .brand-hero .stats {
+    display: flex; gap: 28px; margin-top: 14px;
+    padding-top: 14px; border-top: 1px solid var(--line);
+    font-size: 15.9px;
+  }
+  .brand-hero .stat b { font-weight: 700; color: var(--ink); font-size: 18.3px; margin-right: 6px; }
+
+  .rec-block {
+    background: var(--surface); border-radius: var(--radius);
+    padding: 18px 22px; margin-bottom: 22px; box-shadow: var(--shadow-sm);
+  }
+  .rec-block h3 { margin: 0 0 12px; font-size: 17.1px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; color: var(--accent); }
+  .rec-item { margin-bottom: 10px; font-size: 16.5px; }
+  .rec-item:last-child { margin-bottom: 0; }
+  .rec-item .type {
+    display: inline-block; font-weight: 700; font-size: 13.4px;
+    text-transform: uppercase; letter-spacing: 0.4px;
+    padding: 2px 8px; border-radius: 3px; margin-right: 8px;
+    background: var(--accent-soft); color: var(--accent); vertical-align: middle;
+  }
+  .rec-item .type.defensive { background: var(--critical-bg); color: var(--critical); }
+  .rec-item .type.offensive { background: #e4f3eb; color: #146c43; }
+
+  .filter-bar {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+    background: var(--surface); padding: 14px 18px;
+    border-radius: var(--radius); box-shadow: var(--shadow-sm);
+    margin-bottom: 16px;
+  }
+  .filter-bar input[type="search"] {
+    flex: 1 1 260px; min-width: 220px;
+    padding: 8px 12px; font-size: 16.5px;
+    border: 1px solid var(--line-strong); border-radius: 4px;
+    font-family: inherit; color: var(--ink);
+  }
+  .filter-bar select {
+    padding: 8px 10px; font-size: 15.9px;
+    border: 1px solid var(--line-strong); border-radius: 4px;
+    font-family: inherit; background: #fff; color: var(--ink);
+  }
+  .filter-bar .count {
+    margin-left: auto; font-size: 15.2px; color: var(--ink-muted);
+  }
+  .comp-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 12px;
+  }
+  .comp-card {
+    background: var(--surface); border-radius: var(--radius);
+    padding: 16px 18px; box-shadow: var(--shadow-sm);
+    cursor: pointer; transition: transform 0.12s, box-shadow 0.12s;
+    border-left: 3px solid var(--line);
+  }
+  .comp-card:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+  .comp-card.critical { border-left-color: var(--critical); }
+  .comp-card.high { border-left-color: var(--high); }
+  .comp-card.medium { border-left-color: var(--medium); }
+  .comp-card .hd {
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;
+  }
+  .comp-card .name { font-size: 17.1px; font-weight: 600; }
+  .comp-card .hq { font-size: 14px; color: var(--ink-muted); margin-top: 2px; }
+  .comp-card .what { font-size: 15.2px; color: var(--ink-soft); margin-top: 8px; }
+  .comp-card .tags {
+    display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;
+  }
+  .tag {
+    font-size: 13.4px; padding: 2px 7px; border-radius: 3px;
+    background: #eef1f5; color: var(--ink-soft); font-weight: 500;
+  }
+  .conf-inline {
+    font-size: 13.4px; padding: 2px 7px; border-radius: 3px;
+    font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px;
+    margin-left: 8px; vertical-align: middle;
+  }
+  .conf-inline.verified { background: #e4f3eb; color: #146c43; }
+  .conf-inline.partial { background: #fdf1e0; color: #8a4d00; }
+  .conf-inline.thin { background: var(--critical-bg); color: var(--critical); }
+
+  .modal-backdrop {
+    display: none; position: fixed; inset: 0;
+    background: rgba(20, 25, 38, 0.55);
+    z-index: 100; align-items: flex-start; justify-content: center;
+    padding: 40px 20px; overflow-y: auto;
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal {
+    background: var(--surface); border-radius: 8px;
+    max-width: 760px; width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    padding: 28px 32px 30px;
+    position: relative;
+  }
+  .modal .close {
+    position: absolute; top: 14px; right: 18px;
+    background: none; border: none; font-size: 26.8px;
+    color: var(--ink-muted); cursor: pointer; font-family: inherit;
+  }
+  .modal h2 { margin: 0 0 4px; font-size: 24.4px; }
+  .modal .m-hq { font-size: 15.9px; color: var(--ink-muted); margin-bottom: 14px; }
+  .modal h4 {
+    margin: 16px 0 4px; font-size: 14px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.4px; color: var(--accent);
+  }
+  .modal p { margin: 0; font-size: 16.5px; color: var(--ink-soft); line-height: 1.55; }
+  .modal .subfield { display: block; margin: 2px 0; font-size: 16.5px; color: var(--ink-soft); }
+  .modal .subfield b { color: var(--ink); font-weight: 600; }
+  .modal .brand-hits {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px;
+  }
+  .brand-hit {
+    font-size: 14px; padding: 3px 8px; border-radius: 3px; font-weight: 500;
+  }
+  .brand-hit.P { background: var(--critical-bg); color: var(--critical); }
+  .brand-hit.S { background: #fff3e0; color: #a55509; }
+  .brand-hit.C { background: var(--medium-bg); color: var(--medium); }
+  .modal .links { margin-top: 6px; font-size: 15.9px; }
+  .modal .links a { color: var(--accent); text-decoration: none; margin-right: 14px; }
+  .modal .links a:hover { text-decoration: underline; }
+
+  .watchlist ul { padding-left: 20px; font-size: 16.5px; color: var(--ink-soft); }
+  .watchlist li { margin-bottom: 8px; line-height: 1.5; }
+
+  /* Out-of-scope view */
+  .oos-card {
+    background: var(--surface); border-radius: var(--radius);
+    padding: 18px 22px; margin-bottom: 14px; box-shadow: var(--shadow-sm);
+    border-left: 3px solid var(--medium);
+  }
+  .oos-card h3 { margin: 0 0 4px; font-size: 17.1px; font-weight: 600; }
+  .oos-card .relevance { font-size: 15.2px; color: var(--ink-muted); margin-bottom: 10px; font-style: italic; }
+  .oos-card h4 {
+    margin: 12px 0 4px; font-size: 13.4px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.4px; color: var(--accent);
+  }
+  .oos-card p { margin: 0 0 4px; font-size: 15.9px; color: var(--ink-soft); line-height: 1.5; }
+
+  @media print {
+    nav.tabs, .filter-bar, .brand-picker, header.site { break-inside: avoid; }
+    nav.tabs { display: none; }
+    .view { display: block !important; page-break-before: always; }
+    .view:first-of-type { page-break-before: auto; }
+    body { background: #fff; }
+    main { max-width: none; padding: 20px; }
+    .comp-card, .threat-card, .rec, .rec-block, .oos-card { page-break-inside: avoid; }
+  }
+
+  @media (max-width: 880px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .top-threats { grid-template-columns: 1fr; }
+    main { padding: 20px; }
+    header.site, nav.tabs { padding-left: 20px; padding-right: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <h1 id="hd-title">URUS Global Competitor Landscape</h1>
+  <div class="sub" id="hd-sub"></div>
+  <div class="meta" id="hd-meta"></div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button data-view="summary" class="active">Executive Summary</button>
+  <button data-view="brand">By URUS Brand</button>
+  <button data-view="explorer">Competitor Explorer</button>
+  <button data-view="out-of-scope">Out-of-Scope</button>
+  <button data-view="watchlist">12-Month Watchlist</button>
+  <button onclick="window.print()" style="margin-left:auto;color:var(--ink-muted)">Print / Save as PDF</button>
+</nav>
+
+<main>
+
+  <section class="view active" id="view-summary">
+    <p class="lede" id="summary-lede"></p>
+    <div class="kpi-grid" id="kpis"></div>
+    <h2 class="section-h">Five Threat Vectors</h2>
+    <div class="threat-list" id="threats"></div>
+    <h2 class="section-h">Competitor-to-URUS-Brand Exposure Heat Map</h2>
+    <p class="lede" style="font-size: 15.9px;margin-bottom:10px">
+      <span class="mark P">P</span> primary competitor &nbsp;
+      <span class="mark S">S</span> secondary competitor &nbsp;
+      <span class="mark C">C</span> partner / channel overlap
+    </p>
+    <div class="heatmap-wrap">
+      <table class="heatmap" id="heatmap"></table>
+    </div>
+    <h2 class="section-h">Top Threats to Watch (Critical + High)</h2>
+    <div class="top-threats" id="top-threats"></div>
+    <h2 class="section-h">Strategic Recommendations for URUS</h2>
+    <div class="recs" id="recs"></div>
+  </section>
+
+  <section class="view" id="view-brand">
+    <p class="lede">Pick a URUS brand to see the competitors that directly threaten it and the brand-specific actions recommended by the landscape analysis. Click any competitor for full detail.</p>
+    <div class="brand-picker" id="brand-picker"></div>
+    <div id="brand-detail"></div>
+  </section>
+
+  <section class="view" id="view-explorer">
+    <p class="lede">Filter by search term, URUS brand affected, category, threat level, or confidence rating. Click any card to drill into full detail including scale, moat, and sources.</p>
+    <div class="filter-bar">
+      <input type="search" id="f-search" placeholder="Search by name, HQ, or what they do">
+      <select id="f-brand"><option value="">All URUS brands</option></select>
+      <select id="f-category">
+        <option value="">All categories</option>
+        <option value="software">Software / HMS</option>
+        <option value="milking">Milking OEM</option>
+        <option value="wearables">Wearables / Sensors / Vision</option>
+        <option value="genetics">Genetics / AI mating</option>
+        <option value="ivf">IVF / Embryo</option>
+        <option value="beef">Beef seedstock</option>
+        <option value="calf_nutrition">Calf nutrition / Colostrum</option>
+      </select>
+      <select id="f-threat">
+        <option value="">All threat levels</option>
+        <option value="critical">Critical only</option>
+        <option value="high">High or above</option>
+        <option value="medium">Medium or above</option>
+      </select>
+      <select id="f-confidence">
+        <option value="">All sourcing</option>
+        <option value="verified">Verified</option>
+        <option value="partial">Partial</option>
+        <option value="thin">Thin sourcing</option>
+      </select>
+      <span class="count" id="f-count"></span>
+    </div>
+    <div class="comp-grid" id="comp-grid"></div>
+  </section>
+
+  <section class="view" id="view-out-of-scope">
+    <p class="lede">Categories deliberately not in the primary 67-competitor set, with rationale for why they are parked and trigger conditions that would promote them to primary. Gives the board reassurance that the horizon has been scanned.</p>
+    <div id="oos-list"></div>
+  </section>
+
+  <section class="view" id="view-watchlist">
+    <p class="lede">Market signals to track over the next 12 months. Changes to any of these shift the strategic picture for URUS materially.</p>
+    <div class="rec-block watchlist">
+      <h3>12-Month Signals</h3>
+      <ul id="watchlist-ul"></ul>
+    </div>
+  </section>
+
+</main>
+
+<div class="modal-backdrop" id="modal-backdrop" onclick="if(event.target===this) closeModal()">
+  <div class="modal" id="modal">
+    <button class="close" onclick="closeModal()">&times;</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script src="urus_dashboard_data_v5.js"></script>
+<script>
+(function(){
+  var D = window.COMPETITOR_DATA;
+  if (!D) {
+    document.body.innerHTML = '<div style="padding:40px;font-family:sans-serif;"><h2>Data file missing</h2><p>Could not load <code>urus_dashboard_data_v5.js</code>. Keep it in the same folder as this HTML file.</p></div>';
+    return;
+  }
+
+  var brandById = {};
+  D.urus_brands.forEach(function(b){ brandById[b.id] = b; });
+
+  // Header
+  document.getElementById('hd-title').textContent = D.meta.title;
+  document.getElementById('hd-sub').textContent = D.meta.subtitle;
+  document.getElementById('hd-meta').textContent = 'Revision ' + D.meta.revision + ' \u00B7 ' + D.meta.date + ' \u00B7 ' + D.meta.scope;
+
+  // Summary lede
+  document.getElementById('summary-lede').textContent =
+    'URUS faces competitive pressure across five simultaneous vectors, affecting all eleven operating companies. This dashboard synthesizes ' +
+    D.competitors.length + ' priority competitors, ' + (D.out_of_scope ? D.out_of_scope.length : 0) +
+    ' out-of-scope categories, and the strategic actions required over the next 6 to 18 months.';
+
+  // KPIs
+  var totalComp = D.competitors.length;
+  var critCount = D.competitors.filter(function(c){return c.threat==='critical'}).length;
+  var highCount = D.competitors.filter(function(c){return c.threat==='high'}).length;
+  var kpis = [
+    { num: D.urus_brands.length, label: 'URUS brands covered' },
+    { num: totalComp, label: 'Priority competitors' },
+    { num: critCount + highCount, label: 'Critical + high threats' },
+    { num: D.recommendations.urus_level.length, label: 'Strategic recommendations' }
+  ];
+  var kpiEl = document.getElementById('kpis');
+  kpis.forEach(function(k){
+    var d = document.createElement('div');
+    d.className = 'kpi';
+    d.innerHTML = '<div class="num">' + k.num + '</div><div class="label">' + k.label + '</div>';
+    kpiEl.appendChild(d);
+  });
+
+  // Threats
+  var threatsEl = document.getElementById('threats');
+  D.threats.forEach(function(t){
+    var d = document.createElement('div');
+    d.className = 'threat-card ' + t.severity;
+    var exHtml = t.examples.map(function(e){ return '<span class="ex-chip">' + e + '</span>'; }).join('');
+    d.innerHTML =
+      '<div class="hd"><h3>' + t.name + '</h3>' +
+      '<span class="sev-chip ' + t.severity + '">' + t.severity + '</span></div>' +
+      '<p>' + t.summary + '</p>' +
+      '<div class="examples">' + exHtml + '</div>' +
+      '<div class="exposure"><b>URUS exposure:</b> ' + t.urus_exposure + '</div>';
+    threatsEl.appendChild(d);
+  });
+
+  // Heat map
+  (function buildHeatmap(){
+    var table = document.getElementById('heatmap');
+    var thead = document.createElement('thead');
+    var tr = document.createElement('tr');
+    var th0 = document.createElement('th');
+    th0.textContent = 'Competitor'; th0.style.minWidth = '220px';
+    tr.appendChild(th0);
+    D.urus_brands.forEach(function(b){
+      var th = document.createElement('th');
+      th.innerHTML = b.name; th.style.minWidth = '90px';
+      tr.appendChild(th);
+    });
+    thead.appendChild(tr);
+    table.appendChild(thead);
+
+    var tbody = document.createElement('tbody');
+    var shown = D.competitors
+      .filter(function(c){ return c.threat === 'critical' || c.threat === 'high'; })
+      .sort(function(a,b){
+        var order = { critical: 0, high: 1, medium: 2, low: 3 };
+        return order[a.threat] - order[b.threat];
+      });
+    shown.forEach(function(c){
+      var row = document.createElement('tr');
+      var nameCell = document.createElement('td');
+      nameCell.textContent = c.name;
+      nameCell.style.cursor = 'pointer';
+      nameCell.onclick = function(){ openModal(c.id); };
+      row.appendChild(nameCell);
+      D.urus_brands.forEach(function(b){
+        var td = document.createElement('td');
+        var mk = c.brands && c.brands[b.id];
+        if (mk) td.innerHTML = '<span class="mark ' + mk + '">' + mk + '</span>';
+        row.appendChild(td);
+      });
+      tbody.appendChild(row);
+    });
+    table.appendChild(tbody);
+  })();
+
+  // Top threats
+  var topEl = document.getElementById('top-threats');
+  D.competitors
+    .filter(function(c){ return c.threat === 'critical' || c.threat === 'high'; })
+    .sort(function(a,b){
+      var order = { critical: 0, high: 1 };
+      return order[a.threat] - order[b.threat];
+    })
+    .forEach(function(c){
+      var d = document.createElement('div');
+      d.className = 'top-threat ' + c.threat;
+      d.onclick = function(){ openModal(c.id); };
+      d.innerHTML =
+        '<div class="name">' + c.name + '<span class="sev-chip ' + c.threat + '">' + c.threat + '</span></div>' +
+        '<div class="hq">' + c.hq + '</div>' +
+        '<div class="reason">' + truncate(c.why, 180) + '</div>';
+      topEl.appendChild(d);
+    });
+
+  // Recommendations
+  var recsEl = document.getElementById('recs');
+  D.recommendations.urus_level.forEach(function(r){
+    var d = document.createElement('div');
+    d.className = 'rec ' + r.severity;
+    var lis = r.actions.map(function(a){ return '<li>' + a + '</li>'; }).join('');
+    d.innerHTML = '<h3>' + r.title + '</h3><ul>' + lis + '</ul>';
+    recsEl.appendChild(d);
+  });
+
+  // Brand view
+  var bpEl = document.getElementById('brand-picker');
+  D.urus_brands.forEach(function(b, i){
+    var btn = document.createElement('button');
+    btn.textContent = b.name;
+    btn.setAttribute('data-brand', b.id);
+    if (i === 0) btn.classList.add('active');
+    btn.onclick = function(){
+      bpEl.querySelectorAll('button').forEach(function(x){x.classList.remove('active');});
+      btn.classList.add('active');
+      renderBrandDetail(b.id);
+    };
+    bpEl.appendChild(btn);
+  });
+  renderBrandDetail(D.urus_brands[0].id);
+
+  function renderBrandDetail(brandId) {
+    var b = brandById[brandId];
+    var relCompetitors = D.competitors.filter(function(c){ return c.brands && c.brands[brandId]; });
+    var primary = relCompetitors.filter(function(c){ return c.brands[brandId] === 'P'; });
+    var secondary = relCompetitors.filter(function(c){ return c.brands[brandId] === 'S'; });
+    var channel = relCompetitors.filter(function(c){ return c.brands[brandId] === 'C'; });
+    var critHigh = relCompetitors.filter(function(c){ return c.threat === 'critical' || c.threat === 'high'; }).length;
+
+    var recs = D.recommendations.by_brand[brandId] || [];
+    var recHtml = recs.map(function(r){
+      var type = r.type.toLowerCase().split(' ')[0];
+      var typeClass = (type === 'defensive' || type === 'offensive') ? type : '';
+      return '<div class="rec-item"><span class="type ' + typeClass + '">' + r.type + '</span>' + r.text + '</div>';
+    }).join('');
+
+    var compHtml = [
+      { label: 'Primary competitors', list: primary, cls: 'critical' },
+      { label: 'Secondary competitors', list: secondary, cls: 'high' },
+      { label: 'Partner / channel overlap', list: channel, cls: 'medium' }
+    ].filter(function(g){ return g.list.length > 0; })
+     .map(function(g){
+       var cards = g.list.map(function(c){
+         var brandHits = Object.keys(c.brands).map(function(bid){
+           var bb = brandById[bid]; if (!bb) return '';
+           return '<span class="brand-hit ' + c.brands[bid] + '">' + bb.name + '</span>';
+         }).join('');
+         return '<div class="comp-card ' + c.threat + '" onclick="openModal(\'' + c.id + '\')">' +
+           '<div class="hd"><div><div class="name">' + c.name + '</div>' +
+           '<div class="hq">' + c.hq + '</div></div>' +
+           '<span class="sev-chip ' + c.threat + '">' + c.threat + '</span></div>' +
+           '<div class="what">' + truncate(c.what, 160) + '</div>' +
+           '<div class="tags">' + brandHits + '</div></div>';
+       }).join('');
+       return '<h2 class="section-h">' + g.label + ' (' + g.list.length + ')</h2>' +
+              '<div class="comp-grid">' + cards + '</div>';
+     }).join('');
+
+    var html =
+      '<div class="brand-hero">' +
+        '<h2>' + b.name + '</h2>' +
+        '<div class="focus">' + b.focus + '</div>' +
+        '<div class="stats">' +
+          '<div class="stat"><b>' + relCompetitors.length + '</b>total competitors</div>' +
+          '<div class="stat"><b>' + primary.length + '</b>primary</div>' +
+          '<div class="stat"><b>' + secondary.length + '</b>secondary</div>' +
+          '<div class="stat"><b>' + critHigh + '</b>critical or high threat</div>' +
+        '</div>' +
+      '</div>' +
+      (recs.length ? '<div class="rec-block"><h3>Recommended Actions for ' + b.name + '</h3>' + recHtml + '</div>' : '') +
+      compHtml;
+
+    document.getElementById('brand-detail').innerHTML = html;
+  }
+
+  // Explorer
+  var fBrandSel = document.getElementById('f-brand');
+  D.urus_brands.forEach(function(b){
+    var opt = document.createElement('option');
+    opt.value = b.id; opt.textContent = b.name;
+    fBrandSel.appendChild(opt);
+  });
+
+  function applyFilters() {
+    var q = document.getElementById('f-search').value.toLowerCase().trim();
+    var bFilter = document.getElementById('f-brand').value;
+    var cFilter = document.getElementById('f-category').value;
+    var tFilter = document.getElementById('f-threat').value;
+    var confFilter = document.getElementById('f-confidence').value;
+    var tLevels = { critical: 0, high: 1, medium: 2, low: 3 };
+
+    var rows = D.competitors.filter(function(c){
+      if (q) {
+        var blob = (c.name + ' ' + c.hq + ' ' + c.what + ' ' + (c.why || '') + ' ' + (c.ai || '') + ' ' + (c.funding || '') + ' ' +
+                    (c.scale ? (c.scale.revenue + ' ' + c.scale.customers + ' ' + c.scale.growth) : '') + ' ' +
+                    (c.moat ? (c.moat.type + ' ' + c.moat.vulnerability) : '')).toLowerCase();
+        if (blob.indexOf(q) === -1) return false;
+      }
+      if (bFilter && (!c.brands || !c.brands[bFilter])) return false;
+      if (cFilter && c.category !== cFilter) return false;
+      if (tFilter) { if (tLevels[c.threat] > tLevels[tFilter]) return false; }
+      if (confFilter && c.confidence !== confFilter) return false;
+      return true;
+    });
+
+    var grid = document.getElementById('comp-grid');
+    grid.innerHTML = '';
+    rows.sort(function(a,b){
+      return (tLevels[a.threat] - tLevels[b.threat]) || a.name.localeCompare(b.name);
+    });
+    rows.forEach(function(c){
+      var brandHits = Object.keys(c.brands || {}).map(function(bid){
+        var bb = brandById[bid]; if (!bb) return '';
+        return '<span class="brand-hit ' + c.brands[bid] + '">' + bb.name + '</span>';
+      }).join('');
+      var confBadge = c.confidence ? '<span class="conf-inline ' + c.confidence + '">' + c.confidence + '</span>' : '';
+      var d = document.createElement('div');
+      d.className = 'comp-card ' + c.threat;
+      d.onclick = function(){ openModal(c.id); };
+      d.innerHTML =
+        '<div class="hd"><div><div class="name">' + c.name + confBadge + '</div>' +
+        '<div class="hq">' + c.hq + '</div></div>' +
+        '<span class="sev-chip ' + c.threat + '">' + c.threat + '</span></div>' +
+        '<div class="what">' + truncate(c.what, 160) + '</div>' +
+        '<div class="tags">' + brandHits + '</div>';
+      grid.appendChild(d);
+    });
+    document.getElementById('f-count').textContent = rows.length + ' of ' + D.competitors.length + ' competitors';
+  }
+  ['f-search','f-brand','f-category','f-threat','f-confidence'].forEach(function(id){
+    document.getElementById(id).addEventListener('input', applyFilters);
+  });
+  applyFilters();
+
+  // Out-of-Scope view
+  (function buildOOS(){
+    var el = document.getElementById('oos-list');
+    if (!D.out_of_scope || !D.out_of_scope.length) {
+      el.innerHTML = '<p class="lede" style="color:var(--ink-muted)">No out-of-scope categories defined.</p>';
+      return;
+    }
+    D.out_of_scope.forEach(function(o){
+      var d = document.createElement('div');
+      d.className = 'oos-card';
+      d.innerHTML =
+        '<h3>' + o.name + '</h3>' +
+        '<div class="relevance">' + o.relevance + '</div>' +
+        '<h4>Why parked</h4><p>' + o.why_parked + '</p>' +
+        '<h4>Trigger to promote to primary competitor set</h4><p>' + o.trigger_to_promote + '</p>';
+      el.appendChild(d);
+    });
+  })();
+
+  // Watchlist
+  var wl = document.getElementById('watchlist-ul');
+  D.watchlist.forEach(function(w){
+    var li = document.createElement('li');
+    li.textContent = w;
+    wl.appendChild(li);
+  });
+
+  // Tabs
+  document.querySelectorAll('nav.tabs button[data-view]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('nav.tabs button[data-view]').forEach(function(x){x.classList.remove('active');});
+      btn.classList.add('active');
+      document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active');});
+      document.getElementById('view-' + btn.getAttribute('data-view')).classList.add('active');
+      window.scrollTo(0, 0);
+    });
+  });
+
+  // Modal
+  window.openModal = function(id) {
+    var c = D.competitors.find(function(x){ return x.id === id; });
+    if (!c) return;
+    var brandRows = Object.keys(c.brands || {}).map(function(bid){
+      var bb = brandById[bid]; if (!bb) return '';
+      return '<span class="brand-hit ' + c.brands[bid] + '">' + bb.name + ' (' + c.brands[bid] + ')</span>';
+    }).join('');
+    var links = (c.urls || []).map(function(u){
+      return '<a href="' + u.url + '" target="_blank" rel="noopener">' + u.label + '</a>';
+    }).join('');
+
+    var scaleBlock = c.scale ?
+      '<h4>Scale</h4>' +
+      (c.scale.revenue   ? '<span class="subfield"><b>Revenue:</b> ' + c.scale.revenue + '</span>' : '') +
+      (c.scale.customers ? '<span class="subfield"><b>Customers / share:</b> ' + c.scale.customers + '</span>' : '') +
+      (c.scale.growth    ? '<span class="subfield"><b>Growth:</b> ' + c.scale.growth + '</span>' : '')
+      : '';
+
+    var moatBlock = c.moat ?
+      '<h4>Moat &amp; switching cost</h4>' +
+      '<span class="subfield"><b>Type:</b> ' + c.moat.type + '</span>' +
+      '<span class="subfield"><b>Switching cost:</b> ' + c.moat.switching_cost + '</span>' +
+      '<span class="subfield"><b>Vulnerability:</b> ' + c.moat.vulnerability + '</span>'
+      : '';
+
+    var confBlock = c.confidence ?
+      '<h4>Sourcing</h4><p><span class="conf-inline ' + c.confidence + '">' + c.confidence + '</span> ' +
+      (c.confidence_note || '') + '</p>'
+      : '';
+
+    document.getElementById('modal-body').innerHTML =
+      '<h2>' + c.name + ' <span class="sev-chip ' + c.threat + '" style="font-size: 13.4px;vertical-align:middle;margin-left:8px;">' + c.threat + '</span></h2>' +
+      '<div class="m-hq">' + c.hq + ' \u00B7 ' + capCategory(c.category) + '</div>' +
+      (c.funding ? '<h4>Funding / Ownership</h4><p>' + c.funding + '</p>' : '') +
+      scaleBlock +
+      '<h4>What they do</h4><p>' + c.what + '</p>' +
+      (c.ai ? '<h4>AI layer</h4><p>' + c.ai + '</p>' : '') +
+      moatBlock +
+      '<h4>Why URUS should care</h4><p>' + c.why + '</p>' +
+      '<h4>URUS brands affected</h4><div class="brand-hits">' + brandRows + '</div>' +
+      confBlock +
+      (links ? '<h4>Sources</h4><div class="links">' + links + '</div>' : '');
+    document.getElementById('modal-backdrop').classList.add('open');
+  };
+  window.closeModal = function() {
+    document.getElementById('modal-backdrop').classList.remove('open');
+  };
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeModal(); });
+
+  function truncate(s, n) {
+    if (!s) return '';
+    return s.length > n ? s.substring(0, n - 1).replace(/\s+\S*$/, '') + '\u2026' : s;
+  }
+  function capCategory(c) {
+    return ({ software: 'Software / HMS', milking: 'Milking OEM', wearables: 'Wearables / Sensors / Vision',
+              genetics: 'Genetics / AI mating', ivf: 'IVF / Embryo', beef: 'Beef seedstock',
+              calf_nutrition: 'Calf nutrition / Colostrum' })[c] || c;
+  }
+})();
+</script>
+
+</body>
+</html>
