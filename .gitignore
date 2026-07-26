@@ -1,0 +1,16 @@
+# Legacy pre-repo revisions and export formats - not tracked here.
+# The dashboard's version control now lives in git history (see CHANGELOG.md)
+# rather than in filename suffixes (_v4, _v5, Rev 5, etc.).
+URUS_Competitor_Dashboard_v4.html
+urus_dashboard_data_v4.js
+URUS_Competitor_Dashboard_v5.html
+urus_dashboard_data_v5.js
+URUS_Global_Competitor_Landscape.docx
+URUS-VAS_Competitor_Landscape.docx
+URUS Global Competitor Landscape - Executive Dashboard (Rev 5).pdf
+URUS_Competitive_Stack_v5.svg
+Archive.zip
+URUS_Competitor_Dashboard.html
+urus_dashboard_data.js
+.DS_Store
+.claude/
