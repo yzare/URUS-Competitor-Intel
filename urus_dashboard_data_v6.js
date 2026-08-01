@@ -1,20 +1,20 @@
 /* ==============================================================
-   URUS Global Competitor Landscape - Dashboard Data (Revision 6)
+   URUS Global Competitor Landscape - Dashboard Data (Revision 7)
    ==============================================================
    GENERATED FILE - DO NOT EDIT DIRECTLY.
    Source of truth is data.json in this repo. Edit that file, then run:
      node build.js
    to regenerate this file and the publishable artifact.
    Field docs: SCHEMA.md   Revision history: CHANGELOG.md
-   Updated: July 26, 2026
+   Updated: August 1, 2026
    ============================================================== */
 
 window.COMPETITOR_DATA = {
   "meta": {
     "title": "URUS Global Competitor Landscape",
     "subtitle": "Executive dashboard, all 11 URUS operating companies",
-    "revision": "6",
-    "date": "July 26, 2026",
+    "revision": "7",
+    "date": "August 1, 2026",
     "scope": "67 priority competitors, 11 URUS brands, 5 threat vectors, 4 out-of-scope categories",
     "source_doc": "URUS_Global_Competitor_Landscape.docx"
   },
@@ -767,9 +767,9 @@ window.COMPETITOR_DATA = {
       },
       "funding": "Public (GEA Group AG; XETRA: G1A). Acquired CattleEye March 2024.",
       "scale": {
-        "revenue": "EUR 5.495B FY2025 (+1.4%; organic +3.7%); GEA entered the DAX index Sept 2025",
+        "revenue": "EUR 5.495B FY2025 (+1.4%; organic +3.7%); GEA entered the DAX index Sept 2025; Q2 2026 revenue +10.0% YoY to EUR 1.44B",
         "customers": "Global; Farm Technologies one of two growth drivers",
-        "growth": "Restructured into four divisions end-2025 (Farm Technologies is one); reporting in the new structure from Q1 2026"
+        "growth": "Ad-hoc disclosure (~Jul 30-31, 2026) raised FY2026 guidance on preliminary Q2 results exceeding expectations: organic revenue growth now 6.0-8.0% (from 5.0-7.0%), EBITDA margin before restructuring 17.0-17.4% (from 16.6-17.2%), ROCE 36-40% (from 34-38%); full H1 2026 report due Aug 10, 2026"
       },
       "what": "GEA DairyNet herd management, DairyRobot R9500, DairyRotor T8900, DairyProQ automated parlor, CattleEye computer vision.",
       "ai": "CattleEye: single-camera lameness + BCS, 200,000+ cattle, 23 countries. New AI lab with 20+ hires. CDCB research on genetic basis of lameness.",
@@ -780,7 +780,7 @@ window.COMPETITOR_DATA = {
       },
       "why": "Fastest-growing AI story in legacy OEMs. CattleEye gives GEA hardware-independent vision data. Threat: if CattleEye gets distributed outside GEA-owned farms.",
       "confidence": "verified",
-      "confidence_note": "GEA is publicly listed; all financials and CattleEye acquisition publicly disclosed.",
+      "confidence_note": "GEA is publicly listed; all financials and CattleEye acquisition publicly disclosed. UPDATED Rev 7: raised FY2026 guidance per ad-hoc regulatory disclosure (~Jul 30-31, 2026, verified - mandatory disclosure); Farm Technologies segment-level breakdown not yet available pending the full H1 2026 report (due Aug 10, 2026).",
       "urls": [
         {
           "label": "gea.com",
@@ -1253,7 +1253,7 @@ window.COMPETITOR_DATA = {
       "name": "OneCup AI (BETSY)",
       "hq": "Canada (Alberta)",
       "category": "wearables",
-      "threat": "medium",
+      "threat": "low",
       "brands": {
         "alta": "P",
         "vas": "S",
@@ -1272,20 +1272,20 @@ window.COMPETITOR_DATA = {
         "switching_cost": "Low-medium (camera hardware and subscription)",
         "vulnerability": "CattleEye scale; Cainthus bundled via Ever.Ag"
       },
-      "why": "Cross-over dairy/beef relevance. Emerging vision-AI player. Potential M&A target for calf monitoring. FLAGGED: as of July 2026, onecup.ai redirects to onekind.ai, a Calgary-based company describing an unrelated companion-animal (dog/cat) pharma-research product, with no cattle or BETSY content; OneCup AI's own LinkedIn still describes BETSY/cattle facial-recognition as active and lists OneKind AI merely as a separate 'similar company.' The two sources conflict. If OneCup has genuinely pivoted away from livestock, its threat to URUS drops materially.",
-      "confidence": "thin",
-      "confidence_note": "UNRESOLVED as of Rev 6: onecup.ai now 301-redirects to onekind.ai (an unrelated companion-animal pharma startup with overlapping investors - Thrive AgriFoods, Conexus Venture Capital, UFA), but OneCup AI's LinkedIn still presents cattle/BETSY as an active product line. Needs direct outreach or a fresh manual check of onecup.ai before the next revision to confirm whether this is a pivot, rebrand, or unrelated spinout.",
+      "why": "Cross-over dairy/beef relevance historically. RESOLVED (partial, Rev 7): strong evidence the company has pivoted away from livestock. onecup.ai now serves OneKind AI content (a Calgary-based company building 'ORIGIN', a regulated behavioral-endpoint AI platform for companion-animal EMA/FDA-CVM drug trials). OneKind AI's own About-page copy states it \"started in production animals - building computer vision in feedlots and ranches\" before pivoting to companion-animal clinical trials - matching OneCup AI/BETSY's origin story and same Calgary base, strong evidence of continuity rather than an unrelated redirect. No explicit company press release announcing an 'OneCup AI is now OneKind AI' rebrand was found [inferred, not company-confirmed]. Threat to URUS now downgraded given the visible product targets companion-animal pharma trials, not cattle/beef/dairy.",
+      "confidence": "partial",
+      "confidence_note": "UPDATED Rev 7 (Aug 1, 2026): onecup.ai now serves OneKind AI content (companion-animal clinical-trials platform, Government of Canada AI Compute Access Fund cohort, verified via canada.ca press release confirming OneKind AI is a real, funded, active company). Strong circumstantial match to OneCup AI's origin (same city, matching \"feedlots and ranches\" origin-story language) but direct page loads of onecup.ai/onekind.ai/LinkedIn were blocked this session (proxy/bot-blocking), so the link is inferred from search-index snippets, not a company-confirmed rebrand statement. Confidence raised from thin to partial on the strength of this evidence; recommend a direct-fetch confirmation next cycle (onecup.ai, onekind.ai/about, LinkedIn) once network access allows, to confirm whether BETSY/livestock work is fully sunset, sold, or spun out separately.",
       "urls": [
         {
-          "label": "onecup.ai (redirects to onekind.ai as of Jul 2026)",
+          "label": "onecup.ai (now serving OneKind AI content as of Aug 2026)",
           "url": "https://onecup.ai/"
         },
         {
-          "label": "OneKind AI (redirect target)",
+          "label": "OneKind AI (ORIGIN platform, companion-animal clinical trials)",
           "url": "https://onekind.ai/"
         },
         {
-          "label": "OneCup AI LinkedIn (still cattle-focused)",
+          "label": "OneCup AI LinkedIn (unresolved as of last direct check, Jul 2026)",
           "url": "https://ca.linkedin.com/company/onecup-ai"
         }
       ]
@@ -1702,11 +1702,11 @@ window.COMPETITOR_DATA = {
       "moat": {
         "type": "Animal-health vet channel + genomic + monitoring vertical stack + public balance sheet",
         "switching_cost": "Medium-high (CLARIFIDE integrated with CentralStar, Holstein Canada, Lactanet)",
-        "vulnerability": "Feanix undercuts price; cooperative-owned indexes; integration risk on the pending Neogen genomics acquisition; separately, Zoetis faces a securities fraud class action (class period Jan 2025-May 2026, lead plaintiff deadline Jul 27 2026) over disclosure of weakening Companion Animal demand - a distraction/capital-allocation risk unrelated to the genomics/livestock business"
+        "vulnerability": "Feanix undercuts price; cooperative-owned indexes; the pending Neogen genomics acquisition now faces active antitrust review in Australia (ACCC Phase 2) and New Zealand (Commerce Commission Statement of Issues), a real delay/contest risk, not just integration risk; separately, Zoetis faces a securities fraud class action (class period Jan 2025-May 2026, lead plaintiff deadline Jul 27 2026) over disclosure of weakening Companion Animal demand - a distraction/capital-allocation risk unrelated to the genomics/livestock business"
       },
-      "why": "Animal health giant with deep vet distribution. Partners with CentralStar, Holstein Canada, Lactanet. Competes with URUS on the 'predictive health genomics' axis. Its pending $160M acquisition of Neogen's genomics business consolidates two genomic-testing rivals into one stronger competitor. As of this review the deal remains pending regulatory approval: Zoetis guides to close in H2 2026 while Neogen guides to close by the end of its fiscal H1 2027 (~Nov 2026) - both point to a similar late-2026 window, no material slippage identified.",
+      "why": "Animal health giant with deep vet distribution. Partners with CentralStar, Holstein Canada, Lactanet. Competes with URUS on the 'predictive health genomics' axis. Its pending $160M acquisition of Neogen's genomics business consolidates two genomic-testing rivals into one stronger competitor. UPDATED Rev 7: the deal is now facing active antitrust opposition - Australia's ACCC referred it to a Phase 2 in-depth review (~Jul 22-23, 2026), citing that it combines the two largest cattle genomic-testing suppliers with limited alternatives and high entry barriers; New Zealand's Commerce Commission issued a Statement of Issues (~Jul 2026) preliminarily finding the deal would likely substantially lessen competition in beef-cattle genomic testing, with a decision now expected ~Sept 15, 2026. The deal has NOT closed and completion timing is now genuinely uncertain, superseding the prior 'no material slippage' assessment.",
       "confidence": "verified",
-      "confidence_note": "Publicly traded with detailed segment reporting. A shareholder securities-fraud suit concerns Companion Animal product disclosures, not the genomics/livestock segment, so it doesn't affect confidence in this genomics-competitor assessment but is a company-level risk worth tracking.",
+      "confidence_note": "Publicly traded with detailed segment reporting. UPDATED Rev 7: the Neogen genomics acquisition is now under active antitrust review in Australia and New Zealand (see `why`) - verified via ACCC and NZ Commerce Commission regulator statements, not yet a completed deal. A shareholder securities-fraud suit concerns Companion Animal product disclosures, not the genomics/livestock segment, so it doesn't affect confidence in this genomics-competitor assessment but is a company-level risk worth tracking.",
       "urls": [
         {
           "label": "zoetis.com",
@@ -1732,20 +1732,20 @@ window.COMPETITOR_DATA = {
       },
       "funding": "Public (Nasdaq: NEOG).",
       "scale": {
-        "revenue": "$894.7M FY2025 (-3.2% YoY, fiscal ending May 2025); Q3 FY2026 (~Apr 2026): $211.2M revenue (+0.1% core); FY2026 revenue guidance raised to $857-860M (still ~-4% vs FY2025); adjusted EBITDA guidance maintained at $175M",
+        "revenue": "$894.7M FY2025 (-3.2% YoY, fiscal ending May 2025); Q4 FY2026 (reported Jul 30, 2026) revenue $225.3M (+4.3% core); full FY2026 revenue $870.4M (+1.9% core), above prior $857-860M guidance; FY2027 guidance $880-885M revenue, adj. EBITDA $180-182M",
         "customers": "Mid-size dairies globally; 17-day turnaround edge",
-        "growth": "Genomics business being divested to Zoetis; remaining Neogen focuses on Food Safety (Q3: +4% core) and Animal Safety (Q3: -8.7% core, supplier disruptions), plus Pet Health"
+        "growth": "Genomics business pending divestiture to Zoetis, now delayed by antitrust review (ACCC + NZ Commerce Commission); Food Safety accelerated to +5.8% core in Q4 FY2026; Animal Safety returned to +0.5% core growth after supplier disruptions"
       },
-      "what": "Igenity Select / Essential / Enhanced / BeefxDairy genomic profiles. On March 2, 2026 signed a definitive agreement to sell its global genomics business (GeneSeek, including Igenity and GGP, plus the Encompass data-integration platform) to Zoetis for $160M (~$140M net), primarily for debt reduction. NOT YET CLOSED as of July 2026; Neogen now guides to close by the end of its fiscal H1 2027 (~Nov 2026), consistent with Zoetis's 'H2 calendar 2026' framing.",
+      "what": "Igenity Select / Essential / Enhanced / BeefxDairy genomic profiles. On March 2, 2026 signed a definitive agreement to sell its global genomics business (GeneSeek, including Igenity and GGP, plus the Encompass data-integration platform) to Zoetis for $160M (~$140M net), primarily for debt reduction. NOT YET CLOSED as of Aug 2026; the deal is now under active antitrust review in Australia (ACCC Phase 2, referred ~Jul 22-23, 2026) and New Zealand (Commerce Commission Statement of Issues, decision expected ~Sept 15, 2026), a genuine contest/delay risk beyond the prior 'no slippage' timing framing.",
       "ai": "Genomic traits covering production, feed efficiency, health, conformation via CDCB pipeline.",
       "moat": {
         "type": "Tiered pricing + accessible to mid-size dairies + CDCB pipeline",
         "switching_cost": "Low-medium (per-sample testing)",
         "vulnerability": "Feanix hair-sample undercuts; Zoetis CLARIFIDE bundles with SMARTBOW"
       },
-      "why": "Historically a genomic-testing rival, agreed March 2026 to divest its genomics business (GeneSeek/Igenity/GGP/Encompass) to Zoetis for $160M, expected close ~Nov 2026. Q3 FY2026 results beat expectations and full-year revenue guidance was raised to $857-860M, though still below FY2025. After close the Igenity rivalry transfers to Zoetis and Neogen exits cattle genetics entirely.",
+      "why": "Historically a genomic-testing rival, agreed March 2026 to divest its genomics business (GeneSeek/Igenity/GGP/Encompass) to Zoetis for $160M. UPDATED Rev 7: the deal is now facing antitrust opposition in Australia (ACCC Phase 2 review) and New Zealand (Commerce Commission Statement of Issues finding it would likely substantially lessen competition in beef-cattle genomic testing), with an NZ decision expected ~Sept 15, 2026 - completion timing is now genuinely uncertain. Separately, Q4 FY2026 results (reported Jul 30, 2026) beat expectations and full-year revenue ($870.4M) came in above the raised guidance. After close the Igenity rivalry transfers to Zoetis and Neogen exits cattle genetics entirely - but that close is no longer assured on the previously assumed timeline.",
       "confidence": "verified",
-      "confidence_note": "Publicly traded with disclosed financials.",
+      "confidence_note": "Publicly traded with disclosed financials. UPDATED Rev 7: the Zoetis divestiture is under active antitrust review in Australia and New Zealand (verified via ACCC/NZ Commerce Commission regulator statements and Q4 FY2026 SEC 8-K, Jul 30, 2026).",
       "urls": [
         {
           "label": "neogen.com",
@@ -2265,10 +2265,10 @@ window.COMPETITOR_DATA = {
       },
       "why": "Captures beef producer relationship upstream of Leachman's bull and heifer sales. If AAS layers genomic recommendations on top of its consulting footprint, becomes a more direct threat to Leachman's brand value.",
       "confidence": "partial",
-      "confidence_note": "Consulting firm; service scope documented but scale private. FLAGGED (Rev 6): the listed domain acceleratedags.com failed to resolve (DNS error) during the July 2026 research pass — may be stale or the company may have rebranded/moved domains. Needs a manual check before the next revision.",
+      "confidence_note": "Consulting firm; service scope documented but scale private. FLAGGED (Rev 6): the listed domain acceleratedags.com failed to resolve (DNS error) during the July 2026 research pass. RE-CHECKED Aug 1, 2026 (Rev 7): acceleratedags.com still fails to resolve (DNS error); a broad search (7+ queries across news, social media, and business directories) found zero current web/social/directory footprint under the exact company name \"Accelerated Ag Solutions\" in beef genetics or feedlot consulting, and no evidence of a rebrand, acquisition, or shutdown. This is a stronger and more concerning signal than a single DNS error alone. Recommend a manual check (state business registry, direct outreach) before the next revision; if still dark next cycle, consider downgrading confidence further or flagging this entry for possible delisting.",
       "urls": [
         {
-          "label": "acceleratedags.com (unreachable as of Jul 2026 - unverified)",
+          "label": "acceleratedags.com (still unreachable as of Aug 2026 - unverified)",
           "url": "https://www.acceleratedags.com/"
         }
       ]
