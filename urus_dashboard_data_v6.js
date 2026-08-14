@@ -1,20 +1,20 @@
 /* ==============================================================
-   URUS Global Competitor Landscape - Dashboard Data (Revision 8)
+   URUS Global Competitor Landscape - Dashboard Data (Revision 9)
    ==============================================================
    GENERATED FILE - DO NOT EDIT DIRECTLY.
    Source of truth is data.json in this repo. Edit that file, then run:
      node build.js
    to regenerate this file and the publishable artifact.
    Field docs: SCHEMA.md   Revision history: CHANGELOG.md
-   Updated: August 12, 2026
+   Updated: August 14, 2026
    ============================================================== */
 
 window.COMPETITOR_DATA = {
   "meta": {
     "title": "URUS Global Competitor Landscape",
     "subtitle": "Executive dashboard, all 11 URUS operating companies",
-    "revision": "8",
-    "date": "August 12, 2026",
+    "revision": "9",
+    "date": "August 14, 2026",
     "scope": "67 priority competitors, 11 URUS brands, 5 threat vectors, 4 out-of-scope categories",
     "source_doc": "URUS_Global_Competitor_Landscape.docx"
   },
@@ -590,7 +590,7 @@ window.COMPETITOR_DATA = {
       "brands": {
         "vas": "P"
       },
-      "funding": "Backing not publicly confirmed; the often-cited Nestle / Land O'Lakes link has no primary-source confirmation.",
+      "funding": "Backing not publicly confirmed. The often-cited Nestle / Land O'Lakes link appears to be a conflation with a different company (Vyla, an unrelated dairy-data startup explicitly backed by Nestle/Land O'Lakes/Merck/Lely) rather than a fact about MILC Group itself - no primary source confirms any institutional backing for MILC Group.",
       "scale": {
         "revenue": "Not disclosed",
         "customers": "Processor co-op relationships",
@@ -605,7 +605,7 @@ window.COMPETITOR_DATA = {
       },
       "why": "A platform play analogous to VAS PULSE but with deep processor co-op relationships. Signal to watch: if Cargill, Nestle, or Danone invest directly in an HMS platform, MILC is the vehicle.",
       "confidence": "thin",
-      "confidence_note": "Parent relationships referenced in trade press but not independently confirmed from primary filings; commercial scope unclear.",
+      "confidence_note": "Parent relationships referenced in trade press but not independently confirmed from primary filings; commercial scope unclear. UPDATED Rev 9 (Aug 14, 2026): research into the oft-cited Nestle/Land O'Lakes backing rumor found no primary-source confirmation of any institutional/strategic backing for MILC Group itself. A likely source of the conflation was identified: Vyla, a separate dairy-data company (unrelated to MILC Group; makers of the 'Ascend' app), is explicitly described in trade press as 'catalyzed by Nestle, Land O'Lakes, Merck, and Lely.' Recommend treating the Nestle/Land O'Lakes rumor as likely misattributed to MILC Group rather than as an unconfirmed-but-plausible fact about it; MILC Group's actual ownership/backing remains unconfirmed and undisclosed.",
       "urls": []
     },
     {
@@ -1284,12 +1284,12 @@ window.COMPETITOR_DATA = {
         "switching_cost": "Low-medium (camera hardware and subscription)",
         "vulnerability": "CattleEye scale; Cainthus bundled via Ever.Ag"
       },
-      "why": "Cross-over dairy/beef relevance historically. RESOLVED (partial, Rev 7): strong evidence the company has pivoted away from livestock. onecup.ai now serves OneKind AI content (a Calgary-based company building 'ORIGIN', a regulated behavioral-endpoint AI platform for companion-animal EMA/FDA-CVM drug trials). OneKind AI's own About-page copy states it \"started in production animals - building computer vision in feedlots and ranches\" before pivoting to companion-animal clinical trials - matching OneCup AI/BETSY's origin story and same Calgary base, strong evidence of continuity rather than an unrelated redirect. No explicit company press release announcing an 'OneCup AI is now OneKind AI' rebrand was found [inferred, not company-confirmed]. Threat to URUS now downgraded given the visible product targets companion-animal pharma trials, not cattle/beef/dairy.",
-      "confidence": "partial",
-      "confidence_note": "UPDATED Rev 7 (Aug 1, 2026): onecup.ai now serves OneKind AI content (companion-animal clinical-trials platform, Government of Canada AI Compute Access Fund cohort, verified via canada.ca press release confirming OneKind AI is a real, funded, active company). Strong circumstantial match to OneCup AI's origin (same city, matching \"feedlots and ranches\" origin-story language) but direct page loads of onecup.ai/onekind.ai/LinkedIn were blocked this session (proxy/bot-blocking), so the link is inferred from search-index snippets, not a company-confirmed rebrand statement. Confidence raised from thin to partial on the strength of this evidence; recommend a direct-fetch confirmation next cycle (onecup.ai, onekind.ai/about, LinkedIn) once network access allows, to confirm whether BETSY/livestock work is fully sunset, sold, or spun out separately. UPDATED Rev 8 (Aug 12, 2026): direct fetch of onecup.ai/onekind.ai/LinkedIn was blocked by network policy again this cycle. However, OneCup AI's own GitHub organization (github.com/OneCupAI) now displays as 'OneKind.ai' with bio 'Building sovereign, auditable AI-originated clinical endpoints for animal health' and contact email hanif@onecup.ai - first-party technical evidence (not just search-index inference) supporting the rebrand thesis, though still no explicit company press release/statement found. Search-index snippets also show onecup.ai's own pages (not just onekind.ai) now titled under the OneKind AI brand, suggesting an in-place rebrand of the same domain rather than a redirect to an unrelated company - though a few other indexed onecup.ai pages and the founder's LinkedIn title still show OneCup branding, so the transition may be partial/uneven. Recommend checking LinkedIn directly next cycle once network access allows.",
+      "why": "Cross-over dairy/beef relevance historically. RESOLVED (Rev 9, Aug 14, 2026): OneCup AI has fully exited the livestock/beef space. The rebrand to OneKind AI (companion-animal dog/cat pharma clinical-trials AI, ORIGIN platform, EMA/FDA-CVM regulated endpoints) is now confirmed via a named third-party source (BetaKit's 'formerly OneCup' statement) plus the GitHub org rename. No cattle/BETSY product activity was found anywhere. Retained in this dataset for historical continuity and as a watch item only (in case a spin-out or successor livestock product emerges) - current competitive threat to URUS from this entity is effectively nil.",
+      "confidence": "verified",
+      "confidence_note": "UPDATED Rev 7 (Aug 1, 2026): onecup.ai now serves OneKind AI content (companion-animal clinical-trials platform, Government of Canada AI Compute Access Fund cohort, verified via canada.ca press release confirming OneKind AI is a real, funded, active company). Strong circumstantial match to OneCup AI's origin (same city, matching \"feedlots and ranches\" origin-story language) but direct page loads of onecup.ai/onekind.ai/LinkedIn were blocked this session (proxy/bot-blocking), so the link is inferred from search-index snippets, not a company-confirmed rebrand statement. Confidence raised from thin to partial on the strength of this evidence; recommend a direct-fetch confirmation next cycle (onecup.ai, onekind.ai/about, LinkedIn) once network access allows, to confirm whether BETSY/livestock work is fully sunset, sold, or spun out separately. UPDATED Rev 8 (Aug 12, 2026): direct fetch of onecup.ai/onekind.ai/LinkedIn was blocked by network policy again this cycle. However, OneCup AI's own GitHub organization (github.com/OneCupAI) now displays as 'OneKind.ai' with bio 'Building sovereign, auditable AI-originated clinical endpoints for animal health' and contact email hanif@onecup.ai - first-party technical evidence (not just search-index inference) supporting the rebrand thesis, though still no explicit company press release/statement found. Search-index snippets also show onecup.ai's own pages (not just onekind.ai) now titled under the OneKind AI brand, suggesting an in-place rebrand of the same domain rather than a redirect to an unrelated company - though a few other indexed onecup.ai pages and the founder's LinkedIn title still show OneCup branding, so the transition may be partial/uneven. Recommend checking LinkedIn directly next cycle once network access allows. RESOLVED Rev 9 (Aug 14, 2026): the rebrand is now considered definitively confirmed. BetaKit's 'Most Ambitious 2026' list (Canadian tech media, 2026) states explicitly: 'OneKind AI (formerly OneCup) uses AI to streamline animal health and medicine development' - the first named, dated, third-party statement of the rebrand found across four research cycles, corroborating the GitHub org rename and the Rev 7 Government of Canada AI Compute Access Fund confirmation. Search-indexed snippets of onecup.ai/about, onecup.ai/founders, and the onecup.ai root all now carry the 'OneKind AI' page title, consistent with an in-place rebrand of the same domain and entity rather than an unrelated redirect. No evidence of any active livestock/BETSY product remains anywhere. Confidence raised partial -> verified on the strength of this named third-party confirmation, though direct page renders of onecup.ai/onekind.ai/LinkedIn are still blocked by network egress policy in this environment (evidence is via search-index snippets and secondary tech media, not a live page render or explicit company press release) - a verbatim first-party statement from the company itself has still not been located.",
       "urls": [
         {
-          "label": "onecup.ai (now serving OneKind AI content as of Aug 2026)",
+          "label": "onecup.ai (rebranded in place to OneKind AI, confirmed Rev 9)",
           "url": "https://onecup.ai/"
         },
         {
@@ -1303,6 +1303,10 @@ window.COMPETITOR_DATA = {
         {
           "label": "OneCup AI GitHub org (now displays as \"OneKind.ai\")",
           "url": "https://github.com/OneCupAI"
+        },
+        {
+          "label": "BetaKit Most Ambitious 2026 (explicit \"OneKind AI (formerly OneCup)\" confirmation)",
+          "url": "https://mostambitious.betakit.com/"
         }
       ]
     },
@@ -1987,11 +1991,19 @@ window.COMPETITOR_DATA = {
       },
       "why": "Claims 7 years of breeding compressed into a 7-day in vitro cycle. Cuts Grade 1 embryo cost from approximately $180 to $150. Directly competes with Vytelle, Trans Ova, PEAK, Jetstream, Simplot SimVitro, ABS IVF. Acquisition reach: within URUS range.",
       "confidence": "verified",
-      "confidence_note": "Funding and product scope verified via AgriInvestor and company releases. UPDATED Rev 8 (Aug 12, 2026): A$2M Queensland Government grant reported via Beef Central and OpenGov Asia (trade press); the primary Queensland government statement itself could not be directly fetched this cycle (network egress restrictions), so treat the exact figure/date as corroborated-but-not-primary-source-verified.",
+      "confidence_note": "Funding and product scope verified via AgriInvestor and company releases. UPDATED Rev 8 (Aug 12, 2026): A$2M Queensland Government grant reported via Beef Central and OpenGov Asia (trade press); the primary Queensland government statement itself could not be directly fetched this cycle (network egress restrictions), so treat the exact figure/date as corroborated-but-not-primary-source-verified. UPDATED Rev 9 (Aug 14, 2026): the primary Queensland Government source has now been located - a Ministerial Media Statement ('Queensland's cattle and dairy producers set to gain from targeted tech investment', on/around Aug 11, 2026) confirming the A$2M investment in Nbryo as the first grant under the A$30M Sowing the Seeds of Farming Innovation Fund. statements.qld.gov.au could not be directly fetched this cycle either (network egress block persists), so this is based on consistent search-engine snippets/indexing of the primary URL rather than a direct page render - recommend a direct browser confirmation next cycle to fully close this out.",
       "urls": [
         {
           "label": "nbryo.com",
           "url": "https://nbryo.com/"
+        },
+        {
+          "label": "Queensland Government Ministerial Statement, ~Aug 11 2026 (primary; snippet-verified, direct fetch blocked)",
+          "url": "https://statements.qld.gov.au/statements/105829"
+        },
+        {
+          "label": "Qld DPI AgTech innovation fund program page",
+          "url": "https://www.dpi.qld.gov.au/news-media/campaigns/agtech/involve/fund"
         },
         {
           "label": "A$10M Nov 2025 close",
@@ -2289,10 +2301,10 @@ window.COMPETITOR_DATA = {
       },
       "why": "Captures beef producer relationship upstream of Leachman's bull and heifer sales. If AAS layers genomic recommendations on top of its consulting footprint, becomes a more direct threat to Leachman's brand value.",
       "confidence": "thin",
-      "confidence_note": "Consulting firm; service scope documented but scale private. FLAGGED (Rev 6): the listed domain acceleratedags.com failed to resolve (DNS error) during the July 2026 research pass. RE-CHECKED Aug 1, 2026 (Rev 7): still fails to resolve; broad search found zero footprint under the exact company name, no evidence of rebrand, acquisition, or shutdown. RE-CHECKED AGAIN Aug 12, 2026 (Rev 8): acceleratedags.com still fails to resolve (third consecutive cycle, confirmed via independent direct fetch, not just search); a further broad search (variations on beef genetics, feedlot consulting, LinkedIn, state business registries, founder/principal names) again found zero footprint under the exact company name, with no evidence of dissolution either. Wayback Machine/archive.today could not be checked this cycle (blocked by network egress policy) - this is a tooling gap, not a data point. Given three straight cycles (~2 months) of DNS failure plus a total absence of any independent footprint, downgrading confidence to thin: treat this entry with real skepticism as a going concern. Recommend a manual check (state business registry lookup, direct outreach, or an archive.org-capable channel) before the next revision; if still unresolved, consider moving this entry to out_of_scope or delisting.",
+      "confidence_note": "Consulting firm; service scope documented but scale private. FLAGGED (Rev 6): the listed domain acceleratedags.com failed to resolve (DNS error) during the July 2026 research pass. RE-CHECKED Aug 1, 2026 (Rev 7): still fails to resolve; broad search found zero footprint under the exact company name, no evidence of rebrand, acquisition, or shutdown. RE-CHECKED AGAIN Aug 12, 2026 (Rev 8): acceleratedags.com still fails to resolve (third consecutive cycle, confirmed via independent direct fetch, not just search); a further broad search (variations on beef genetics, feedlot consulting, LinkedIn, state business registries, founder/principal names) again found zero footprint under the exact company name, with no evidence of dissolution either. Wayback Machine/archive.today could not be checked this cycle (blocked by network egress policy) - this is a tooling gap, not a data point. Given three straight cycles (~2 months) of DNS failure plus a total absence of any independent footprint, downgrading confidence to thin: treat this entry with real skepticism as a going concern. Recommend a manual check (state business registry lookup, direct outreach, or an archive.org-capable channel) before the next revision; if still unresolved, consider moving this entry to out_of_scope or delisting. RE-CHECKED AGAIN Aug 14, 2026 (Rev 9): acceleratedags.com still fails to resolve (DNS ENOTFOUND) - fourth consecutive cycle (~3 months) of non-resolution. A further broad search (feedlot/cow-calf/beef-genetics consulting variations, LinkedIn company and employee search, state-registry-style queries) again found zero footprint under the exact company name; only near-miss/unrelated companies surfaced (Accelerated Genetics, Accelerated Ag Technologies/PowerPollen, Accelerated Agriculture Inc., Accelerated Growth Solutions). Wayback Machine/archive.org remained blocked by network egress policy this cycle too, so a historical-snapshot lookup to identify principals or a state of operation for a registry search is still not possible from this research environment. Given four straight cycles of DNS non-resolution plus a total, sustained absence of any independent footprint, this entry should now be treated as very likely defunct - but full confirmation (a state business-registry lookup or direct outreach) still requires a channel this automated process doesn't have access to. FLAGGING FOR MANUAL DECISION: recommend a human either (a) perform a direct state business-registry lookup or outreach to definitively confirm status, or (b) approve delisting this entry / moving it to out_of_scope absent further evidence next cycle.",
       "urls": [
         {
-          "label": "acceleratedags.com (unreachable for 3 consecutive cycles as of Aug 2026 - unverified, likely defunct)",
+          "label": "acceleratedags.com (unreachable for 4 consecutive cycles as of Aug 2026 - unverified, likely defunct)",
           "url": "https://www.acceleratedags.com/"
         }
       ]
@@ -2342,7 +2354,7 @@ window.COMPETITOR_DATA = {
       "scale": {
         "revenue": "$27.6M FY2025 product sales (+4.3% YoY); First Defense alone ~$27.8M trailing-twelve-month Sept 2025. Q1 2026 product sales $10.4M (+28.4% YoY, record quarter); Q2 2026 product sales $7.2M (+11.5% YoY); H1 2026 total product sales $17.5M (+20.9% YoY)",
         "customers": "#1 US scours-prevention rank (2025 Hoard's Dairyman Continuing Market Study); 29% US scours-prevention spend share",
-        "growth": "Increased First Defense field sales 50%; expanded manufacturing to 4.6M units; Q1 2026 product sales $10.4M (+28.4% YoY), net income $1.9M, gross margin 45%, operating cash flow $3.57M (more than doubled YoY). Q2 2026: Tri-Shield First Defense sales +8.3% to $4.9M, domestic sales +27.7% but international -38.9%. May 8, 2026: settled all claims with former Re-Tain contract manufacturer Norbrook Laboratories for a $2.0M payment, redirected into colostrum-plant capacity expansion. Q2 2026 earnings call scheduled Aug 14, 2026."
+        "growth": "Increased First Defense field sales 50%; expanded manufacturing to 4.6M units; Q1 2026 product sales $10.4M (+28.4% YoY), net income $1.9M, gross margin 45%, operating cash flow $3.57M (more than doubled YoY). Q2 2026: Tri-Shield First Defense sales +8.3% to $4.9M, domestic sales +27.7% but international -38.9%. May 8, 2026: settled all claims with former Re-Tain contract manufacturer Norbrook Laboratories for a $2.0M payment, redirected into colostrum-plant capacity expansion. Q2 2026 (quarter ended June 30, 2026) unaudited results released Aug 13, 2026: net income $1.8M, EPS $0.20 (beat consensus estimate of $0.05), gross margin 34% (down from Q1's 45%, reflecting low manufacturing volumes and absorbed costs from the discontinued Re-Tain development program), cash grew to $8.9M (from $3.8M at 12/31/2025), net working capital ~$16.6M (from $13.0M); the $2.0M Norbrook Re-Tain settlement was recognized in this quarter's results, boosting reported net income."
       },
       "what": "First Defense antibody-based oral boluses and gel for newborn calves. Tri-Shield formulation covers E. coli, coronavirus, and Clostridium perfringens.",
       "ai": "Minimal. Product-led, not software-led. No meaningful AI component.",
@@ -2353,7 +2365,7 @@ window.COMPETITOR_DATA = {
       },
       "why": "The single most direct substitute for Lifeline colostrum replacer in the US commercial market. USDA-licensed specific-antibody dose is an FDA-class story SCCL cannot match on the regulatory framing, even though Lifeline's whole-colostrum composition is arguably broader. Strategic focus narrowed to First Defense after Dec 23, 2025 FDA Incomplete Letter on Re-Tain NADA; ImmuCell is now a pure First Defense company. This is the competitor SCCL must beat on published head-to-head calf outcome trials.",
       "confidence": "verified",
-      "confidence_note": "Nasdaq listing provides audited financials; Re-Tain FDA letter publicly disclosed.",
+      "confidence_note": "Nasdaq listing provides audited financials; Re-Tain FDA letter publicly disclosed. UPDATED Rev 9 (Aug 14, 2026): Q2 2026 (quarter ended June 30, 2026) unaudited results released via GlobeNewswire press release and SEC 8-K exhibit on Aug 13, 2026, confirming the previously-noted preliminary Q2 sales figures and adding net income/EPS/cash-position detail.",
       "urls": [
         {
           "label": "immucell.com",
@@ -2366,6 +2378,10 @@ window.COMPETITOR_DATA = {
         {
           "label": "Re-Tain FDA letter / strategic focus Dec 2025",
           "url": "https://www.globenewswire.com/news-release/2025/12/24/3210388/0/en/ImmuCell-Announces-Strategic-Focus-on-First-Defense-After-Receiving-an-FDA-Incomplete-Letter-for-Re-Tain.html"
+        },
+        {
+          "label": "ImmuCell Q2 2026 unaudited results (Aug 13, 2026)",
+          "url": "https://www.globenewswire.com/news-release/2026/08/13/3344915/0/en/immucell-announces-unaudited-financial-results-for-the-quarter-ended-june-30-2026.html"
         }
       ]
     },
